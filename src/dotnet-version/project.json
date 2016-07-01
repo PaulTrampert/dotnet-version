@@ -1,5 +1,12 @@
 {
   "version": "1.0.2-*",
+  "authors": [ "Paul Trampert" ],
+  "description": "dotnet command to set the version of a project.json",
+  "packOptions": {
+    "licenseUrl": "http://www.opensource.org/licenses/MIT",
+    "projectUrl": "https://github.com/PaulTrampert/dotnet-version",
+    "owners": [ "Paul Trampert" ]
+  },
   "buildOptions": {
     "emitEntryPoint": true
   },
