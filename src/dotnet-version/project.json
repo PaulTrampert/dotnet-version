@@ -18,8 +18,5 @@
     "netcoreapp1.0": {
       "imports": "dnxcore50"
     }
-  },
-  "tools": {
-    "dotnet-version": "*" 
-  } 
+  }
 }

@@ -12,10 +12,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "dotnet-version", "src\dotnet-version\dotnet-version.xproj", "{40B39E04-E643-4007-A91C-CB1EF933EB56}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{CB3E7291-9ACC-4EB8-ABAF-900E5178C44C}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "dotnet-version.test", "test\dotnet-version.test\dotnet-version.test.xproj", "{54F76DD5-4427-4844-A5F0-0DE2E24A4DAA}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,16 +22,11 @@ Global
 		{40B39E04-E643-4007-A91C-CB1EF933EB56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40B39E04-E643-4007-A91C-CB1EF933EB56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40B39E04-E643-4007-A91C-CB1EF933EB56}.Release|Any CPU.Build.0 = Release|Any CPU
-		{54F76DD5-4427-4844-A5F0-0DE2E24A4DAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{54F76DD5-4427-4844-A5F0-0DE2E24A4DAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{54F76DD5-4427-4844-A5F0-0DE2E24A4DAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{54F76DD5-4427-4844-A5F0-0DE2E24A4DAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{40B39E04-E643-4007-A91C-CB1EF933EB56} = {61AF4BAF-68F9-4D13-B37E-075AB2459A59}
-		{54F76DD5-4427-4844-A5F0-0DE2E24A4DAA} = {CB3E7291-9ACC-4EB8-ABAF-900E5178C44C}
 	EndGlobalSection
 EndGlobal
