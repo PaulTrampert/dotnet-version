@@ -1,9 +1,8 @@
-﻿{
-  "version": "1.0.0-*",
+{
+  "version": "1.0.0",
   "buildOptions": {
     "emitEntryPoint": true
   },
-
   "dependencies": {
     "Microsoft.NETCore.App": {
       "type": "platform",
@@ -11,7 +10,6 @@
     },
     "Microsoft.DotNet.ProjectModel": "1.0.0-rc3-003121"
   },
-
   "frameworks": {
     "netcoreapp1.0": {
       "imports": "dnxcore50"
