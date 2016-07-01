@@ -3,3 +3,4 @@ bin/
 obj/
 *.user
 *.lock.json
+*.suo
