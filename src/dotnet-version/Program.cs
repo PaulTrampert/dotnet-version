@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.IO;
 using Microsoft.DotNet.ProjectModel;
 using Newtonsoft.Json;
-using NuGet.Frameworks;
-using NuGet.Versioning;
 
 namespace dotnet_version
 {
