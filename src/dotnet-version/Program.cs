@@ -9,12 +9,12 @@ namespace dotnet_version
     public class Program
     {
         private static readonly ILogger Logger = new LoggerFactory().AddConsole().CreateLogger<Program>();
-        public static void Main(string[] args)
+        public static int Main(string[] args)
         {
             if (args.Length == 0 || string.Equals(args[0], "-help", StringComparison.OrdinalIgnoreCase))
             {
                 Console.WriteLine("Usage: dotnet version <VERSION_STRING>");
-                return;
+                return 0;
             }
             try
             {
@@ -27,14 +27,17 @@ namespace dotnet_version
                 Logger.LogInformation($"Version set to {args[0]}");
                 File.WriteAllText(projectFilePath, JsonConvert.SerializeObject(projectFile, Formatting.Indented));
                 Logger.LogInformation($"Project saved.");
+                return 0;
             }
             catch (FileNotFoundException e)
             {
                 Logger.LogError(new EventId(1, "Project file not found"), e, "The project file was not found. Make sure you are running this command from the project root.");
+                return 1;
             }
             catch (Exception e)
             {
                 Logger.LogError(new EventId(-1, "Unknown Error"), e, "Unexpected exception occurred.");
+                return 2;
             }
         }
     }
