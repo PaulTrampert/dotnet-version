@@ -69,7 +69,7 @@ namespace dotnet_version
             var projectFilePath = $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}{Project.FileName}";
             dynamic projectFile = JsonConvert.DeserializeObject(File.ReadAllText(projectFilePath));
             projectFile.version = $"{newVersion}-*";
-            File.WriteAllText(projectFilePath, JsonConvert.SerializeObject(projectFile));
+            File.WriteAllText(projectFilePath, JsonConvert.SerializeObject(projectFile, Formatting.Indented));
         }
     }
 }
