@@ -18,14 +18,11 @@ Then from the command prompt, change your working directory to the root of your 
 
 The primary purpose of this is build servers. the build script might do something like this:
 ```batch
-dotnet version 1.3.0
+dotnet version set --new-version 1.3.0
 dotnet pack -c Release
 git commit -a -m "Release 1.3.0"
 git tag 1.3.0
-dotnet version 1.3.1-*
+dotnet version set --new-version 1.3.1-*
 git commit -a -m "Next working version"
 ```
 This would set the version to 1.3.0, then build and pack the project.
-
-
-
