@@ -3,14 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{61AF4BAF-68F9-4D13-B37E-075AB2459A59}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0182033A-8C29-4A71-940E-DD112E7186E8}"
 	ProjectSection(SolutionItems) = preProject
 		global.json = global.json
+		Jenkinsfile = Jenkinsfile
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "dotnet-version", "src\dotnet-version\dotnet-version.xproj", "{40B39E04-E643-4007-A91C-CB1EF933EB56}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "dotnet-version", "dotnet-version\dotnet-version.xproj", "{40B39E04-E643-4007-A91C-CB1EF933EB56}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,8 +24,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{40B39E04-E643-4007-A91C-CB1EF933EB56} = {61AF4BAF-68F9-4D13-B37E-075AB2459A59}
 	EndGlobalSection
 EndGlobal
