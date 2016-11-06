@@ -12,7 +12,7 @@ Include this in the tools section of your project.json. It's available via nuget
 }
 ```
 
-To change the version listed in the project.json from the command line, make sure your working directory is your project root. Then call `dotnet version <version_number>`.
+To change the version listed in the project.json from the command line, make sure your working directory is your project root. Then call `dotnet version set --new-version <version_number>`. You can also use an environment variable to set the version by calling `dotnet version set --env-var <variable_name>`. This is particularly useful in the project.json scripts section, where environment variables will not be resolved.
 
 Then from the command prompt, change your working directory to the root of your project. For example if your `project.json` is in `C:\Users\Paul\Project`, you would `cd C:\Users\Paul\Project`. You can then change the version string in the `project.json` with `dotnet version <yourversionnumber>`.
 
