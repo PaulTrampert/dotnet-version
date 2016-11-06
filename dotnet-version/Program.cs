@@ -30,7 +30,7 @@ namespace dotnet_version
 
                 target.OnExecute(() =>
                 {
-                    if (newVersion.HasValue() != envVar.HasValue())
+                    if (newVersion.HasValue() == envVar.HasValue())
                     {
                         Logger.LogError("--new-version or --env-var must be set, not both.");
                         return 1;
