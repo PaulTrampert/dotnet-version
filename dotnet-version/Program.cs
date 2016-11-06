@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.DotNet.ProjectModel;
+using Microsoft.Extensions.CommandLineUtils;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
@@ -9,36 +13,63 @@ namespace dotnet_version
     public class Program
     {
         private static readonly ILogger Logger = new LoggerFactory().AddConsole().CreateLogger<Program>();
-        public static int Main(string[] args)
+
+        public static int Main(params string[] args)
         {
-            if (args.Length == 0 || string.Equals(args[0], "-help", StringComparison.OrdinalIgnoreCase))
+            var app = new CommandLineApplication();
+            app.Command("set", target =>
             {
-                Console.WriteLine("Usage: dotnet version <VERSION_STRING>");
-                return 0;
-            }
-            try
+                var newVersion = target.Option("--new-version", 
+                    "If specified, the new version to set in the project.json. Version must be in semver format (major.minor.patch).", 
+                    CommandOptionType.SingleValue);
+                var envVar = target.Option("--env-var",
+                    "If specified, the environment variable contianing the new version. Version must be in semver format (major.minor.patch).",
+                    CommandOptionType.SingleValue);
+
+                target.HelpOption("-? | -help");
+
+                target.OnExecute(() =>
+                {
+                    if (newVersion.HasValue() != envVar.HasValue())
+                    {
+                        Logger.LogError("--new-version or --env-var must be set, not both.");
+                        return 1;
+                    }
+                    var versionString = envVar.HasValue() ? Environment.GetEnvironmentVariable(envVar.Value()) : newVersion.Value();
+                    if(!string.IsNullOrWhiteSpace(versionString))
+                        SetVersion(versionString);
+                    return 0;
+                });
+            });
+
+            app.Command("read", target =>
             {
-                var projectFilePath =
-                    $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}{Project.FileName}";
-                Logger.LogInformation($"Loading project from {projectFilePath}...");
-                dynamic projectFile = JsonConvert.DeserializeObject(File.ReadAllText(projectFilePath));
-                Logger.LogInformation($"Project loaded.");
-                projectFile.version = args[0];
-                Logger.LogInformation($"Version set to {args[0]}");
-                File.WriteAllText(projectFilePath, JsonConvert.SerializeObject(projectFile, Formatting.Indented));
-                Logger.LogInformation($"Project saved.");
-                return 0;
-            }
-            catch (FileNotFoundException e)
-            {
-                Logger.LogError(new EventId(1, "Project file not found"), e, "The project file was not found. Make sure you are running this command from the project root.");
-                return 1;
-            }
-            catch (Exception e)
-            {
-                Logger.LogError(new EventId(-1, "Unknown Error"), e, "Unexpected exception occurred.");
-                return 2;
-            }
+                target.HelpOption("-? | -help");
+                target.OnExecute(() =>
+                {
+                    ReadVersion();
+                    return 0;
+                });
+            });
+
+            app.HelpOption("-? | -help");
+
+            return app.Execute(args);
+        }
+
+        private static void ReadVersion()
+        {
+            var projectFilePath = $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}{Project.FileName}";
+            dynamic projectFile = JsonConvert.DeserializeObject(File.ReadAllText(projectFilePath));
+            Console.WriteLine(projectFile.version);
+        }
+
+        public static void SetVersion(string newVersion)
+        {
+            var projectFilePath = $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}{Project.FileName}";
+            dynamic projectFile = JsonConvert.DeserializeObject(File.ReadAllText(projectFilePath));
+            projectFile.version = $"{newVersion}-*";
+            File.WriteAllText(projectFilePath, JsonConvert.SerializeObject(projectFile));
         }
     }
 }
