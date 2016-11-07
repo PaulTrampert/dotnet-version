@@ -9,7 +9,11 @@ properties([
 
 properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')), pipelineTriggers([])])
 
+env.ReleaseVersion = params.ReleaseVersion
+env.NextVersion = params.NextVersion
+
 nugetPipeline {
   project = "dotnet-version"
   notificationRecipients = "paul.trampert@gmail.com"
+  isRelease = params.IsRelease
 }
