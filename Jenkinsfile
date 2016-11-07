@@ -2,7 +2,7 @@ properties([
 	parameters([
 		string(defaultValue: '', description: '', name: 'ReleaseVersion'), 
 		string(defaultValue: '', description: '', name: 'NextVersion'), 
-		string(defaultValue: false, description: '', name: 'IsRelease')
+		booleanParam(defaultValue: false, description: '', name: 'IsRelease')
 	]), 
 	pipelineTriggers([])
 ])
