@@ -1,3 +1,4 @@
+**This package is no longer maintained. Project.json is no longer supported by Microsoft, and so this project is no longer useful.**
 # dotnet-version
 Tool to update the version of a project.json.
 
